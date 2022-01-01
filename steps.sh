@@ -48,7 +48,7 @@ trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
 # Clean up working directories
 cleanup () {
-[[ -d ./ezreleng ]] && rm -r ./ezreleng
+[[ -d ./archreleng ]] && rm -r ./archreleng
 [[ -d ./work ]] && rm -r ./work
 [[ -d ./out ]] && mv ./out ../
 sleep 2
@@ -60,76 +60,77 @@ pacman -S --noconfirm archlinux-keyring
 pacman -S --needed --noconfirm archiso mkinitcpio-archiso
 }
 
-# Copy ezreleng to working directory
-cpezreleng () {
-cp -r /usr/share/archiso/configs/releng/ ./ezreleng
-rm -r ./ezreleng/efiboot
-rm -r ./ezreleng/syslinux
+# Copy archreleng to working directory
+cparchreleng () {
+cp -r /usr/share/archiso/configs/releng/ ./archreleng
+rm -r ./archreleng/efiboot
+rm -r ./archreleng/syslinux
 }
 
-# Copy ezrepo to opt
-cpezrepo () {
-cp -r ./opt/ezrepo /opt/
+# Copy arch to opt
+cparch () {
+cp -r ./opt/arch /opt/
 }
 
-# Remove ezrepo from opt
-rmezrepo () {
-rm -r /opt/ezrepo
+# Remove arch from opt
+rmarch () {
+rm -r /opt/arch
 }
 
 # Delete automatic login
 nalogin () {
-[[ -d ./ezreleng/airootfs/etc/systemd/system/getty@tty1.service.d ]] && rm -r ./ezreleng/airootfs/etc/systemd/system/getty@tty1.service.d
+[[ -d ./archreleng/airootfs/etc/systemd/system/getty@tty1.service.d ]] && rm -r ./archreleng/airootfs/etc/systemd/system/getty@tty1.service.d
 }
 
 # Remove cloud-init and other stuff
 rmunitsd () {
-[[ -d ./ezreleng/airootfs/etc/systemd/system/cloud-init.target.wants ]] && rm -r ./ezreleng/airootfs/etc/systemd/system/cloud-init.target.wants
-[[ -f ./ezreleng/airootfs/etc/systemd/system/multi-user.target.wants/iwd.service ]] && rm ./ezreleng/airootfs/etc/systemd/system/multi-user.target.wants/iwd.service
-[[ -f ./ezreleng/airootfs/etc/xdg/reflector/reflector.conf ]] && rm ./ezreleng/airootfs/etc/xdg/reflector/reflector.conf
+[[ -d ./archreleng/airootfs/etc/systemd/system/cloud-init.target.wants ]] && rm -r ./archreleng/airootfs/etc/systemd/system/cloud-init.target.wants
+[[ -f ./archreleng/airootfs/etc/systemd/system/multi-user.target.wants/iwd.service ]] && rm ./archreleng/airootfs/etc/systemd/system/multi-user.target.wants/iwd.service
+[[ -f ./archreleng/airootfs/etc/xdg/reflector/reflector.conf ]] && rm ./archreleng/airootfs/etc/xdg/reflector/reflector.conf
 }
 
 # Add NetworkManager, lightdm, cups, & haveged systemd links
 addnmlinks () {
-[[ ! -d ./ezreleng/airootfs/etc/systemd/system/sysinit.target.wants ]] && mkdir -p ./ezreleng/airootfs/etc/systemd/system/sysinit.target.wants
-[[ ! -d ./ezreleng/airootfs/etc/systemd/system/network-online.target.wants ]] && mkdir -p ./ezreleng/airootfs/etc/systemd/system/network-online.target.wants
-[[ ! -d ./ezreleng/airootfs/etc/systemd/system/multi-user.target.wants ]] && mkdir -p ./ezreleng/airootfs/etc/systemd/system/multi-user.target.wants
-[[ ! -d ./ezreleng/airootfs/etc/systemd/system/printer.target.wants ]] && mkdir -p ./ezreleng/airootfs/etc/systemd/system/printer.target.wants
-[[ ! -d ./ezreleng/airootfs/etc/systemd/system/sockets.target.wants ]] && mkdir -p ./ezreleng/airootfs/etc/systemd/system/sockets.target.wants
-[[ ! -d ./ezreleng/airootfs/etc/systemd/system/timers.target.wants ]] && mkdir -p ./ezreleng/airootfs/etc/systemd/system/timers.target.wants
-ln -sf /usr/lib/systemd/system/NetworkManager-wait-online.service ./ezreleng/airootfs/etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service
-ln -sf /usr/lib/systemd/system/NetworkManager.service ./ezreleng/airootfs/etc/systemd/system/multi-user.target.wants/NetworkManager.service
-ln -sf /usr/lib/systemd/system/NetworkManager-dispatcher.service ./ezreleng/airootfs/etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
-ln -sf /usr/lib/systemd/system/lightdm.service ./ezreleng/airootfs/etc/systemd/system/display-manager.service
-ln -sf /usr/lib/systemd/system/haveged.service ./ezreleng/airootfs/etc/systemd/system/sysinit.target.wants/haveged.service
-ln -sf /usr/lib/systemd/system/cups.service ./ezreleng/airootfs/etc/systemd/system/printer.target.wants/cups.service
-ln -sf /usr/lib/systemd/system/cups.socket ./ezreleng/airootfs/etc/systemd/system/sockets.target.wants/cups.socket
-ln -sf /usr/lib/systemd/system/cups.path ./ezreleng/airootfs/etc/systemd/system/multi-user.target.wants/cups.path
-ln -sf /usr/lib/systemd/system/plocate-updatedb.timer ./ezreleng/airootfs/etc/systemd/system/timers.target.wants/plocate-updatedb.timer
+[[ ! -d ./archreleng/airootfs/etc/systemd/system/sysinit.target.wants ]] && mkdir -p ./archreleng/airootfs/etc/systemd/system/sysinit.target.wants
+[[ ! -d ./archreleng/airootfs/etc/systemd/system/network-online.target.wants ]] && mkdir -p ./archreleng/airootfs/etc/systemd/system/network-online.target.wants
+[[ ! -d ./archreleng/airootfs/etc/systemd/system/multi-user.target.wants ]] && mkdir -p ./archreleng/airootfs/etc/systemd/system/multi-user.target.wants
+[[ ! -d ./archreleng/airootfs/etc/systemd/system/printer.target.wants ]] && mkdir -p ./archreleng/airootfs/etc/systemd/system/printer.target.wants
+[[ ! -d ./archreleng/airootfs/etc/systemd/system/sockets.target.wants ]] && mkdir -p ./archreleng/airootfs/etc/systemd/system/sockets.target.wants
+[[ ! -d ./archreleng/airootfs/etc/systemd/system/timers.target.wants ]] && mkdir -p ./archreleng/airootfs/etc/systemd/system/timers.target.wants
+ln -sf /usr/lib/systemd/system/NetworkManager-wait-online.service ./archreleng/airootfs/etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service
+ln -sf /usr/lib/systemd/system/NetworkManager.service ./archreleng/airootfs/etc/systemd/system/multi-user.target.wants/NetworkManager.service
+ln -sf /usr/lib/systemd/system/NetworkManager-dispatcher.service ./archreleng/airootfs/etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
+ln -sf /usr/lib/systemd/system/lightdm.service ./archreleng/airootfs/etc/systemd/system/display-manager.service
+ln -sf /usr/lib/systemd/system/haveged.service ./archreleng/airootfs/etc/systemd/system/sysinit.target.wants/haveged.service
+ln -sf /usr/lib/systemd/system/cups.service ./archreleng/airootfs/etc/systemd/system/printer.target.wants/cups.service
+ln -sf /usr/lib/systemd/system/cups.socket ./archreleng/airootfs/etc/systemd/system/sockets.target.wants/cups.socket
+ln -sf /usr/lib/systemd/system/cups.path ./archreleng/airootfs/etc/systemd/system/multi-user.target.wants/cups.path
+ln -sf /usr/lib/systemd/system/plocate-updatedb.timer ./archreleng/airootfs/etc/systemd/system/timers.target.wants/plocate-updatedb.timer
 }
 
 # Copy files to customize the ISO
 cpmyfiles () {
-cp packages.x86_64 ./ezreleng/
-cp pacman.conf ./ezreleng/
-cp profiledef.sh ./ezreleng/
-cp -r efiboot ./ezreleng/
-cp -r syslinux ./ezreleng/
-cp -r usr ./ezreleng/airootfs/
-cp -r etc ./ezreleng/airootfs/
-cp -r opt ./ezreleng/airootfs/
-ln -sf /usr/share/ezarcher ./ezreleng/airootfs/etc/skel/ezarcher
+chmod +x /etc/skel/.config/awesome/configuration/rofi/global/rofi-spotlight.sh
+cp packages.x86_64 ./archreleng/
+cp pacman.conf ./archreleng/
+cp profiledef.sh ./archreleng/
+cp -r efiboot ./archreleng/
+cp -r syslinux ./archreleng/
+cp -r usr ./archreleng/airootfs/
+cp -r etc ./archreleng/airootfs/
+cp -r opt ./archreleng/airootfs/
+ln -sf /usr/share/ezarcher ./archreleng/airootfs/etc/skel/ezarcher
 }
 
 # Set hostname
 sethostname () {
-echo "${MYHOSTNM}" > ./ezreleng/airootfs/etc/hostname
+echo "${MYHOSTNM}" > ./archreleng/airootfs/etc/hostname
 }
 
 # Create passwd file
 crtpasswd () {
 echo "root:x:0:0:root:/root:/usr/bin/bash
-"${MYUSERNM}":x:1010:1010::/home/"${MYUSERNM}":/bin/bash" > ./ezreleng/airootfs/etc/passwd
+"${MYUSERNM}":x:1010:1010::/home/"${MYUSERNM}":/bin/bash" > ./archreleng/airootfs/etc/passwd
 }
 
 # Create group file
@@ -150,7 +151,7 @@ storage:x:870:"${MYUSERNM}"
 optical:x:880:"${MYUSERNM}"
 lp:x:840:"${MYUSERNM}"
 audio:x:890:"${MYUSERNM}"
-"${MYUSERNM}":x:1010:" > ./ezreleng/airootfs/etc/group
+"${MYUSERNM}":x:1010:" > ./archreleng/airootfs/etc/group
 }
 
 # Create shadow file
@@ -158,40 +159,40 @@ crtshadow () {
 usr_hash=$(openssl passwd -6 "${MYUSRPASSWD}")
 root_hash=$(openssl passwd -6 "${RTPASSWD}")
 echo "root:"${root_hash}":14871::::::
-"${MYUSERNM}":"${usr_hash}":14871::::::" > ./ezreleng/airootfs/etc/shadow
+"${MYUSERNM}":"${usr_hash}":14871::::::" > ./archreleng/airootfs/etc/shadow
 }
 
 # create gshadow file
 crtgshadow () {
 echo "root:!*::root
-"${MYUSERNM}":!*::" > ./ezreleng/airootfs/etc/gshadow
+"${MYUSERNM}":!*::" > ./archreleng/airootfs/etc/gshadow
 }
 
 # Set the keyboard layout
 setkeylayout () {
-echo "KEYMAP="${KEYMP}"" > ./ezreleng/airootfs/etc/vconsole.conf
+echo "KEYMAP="${KEYMP}"" > ./archreleng/airootfs/etc/vconsole.conf
 }
 
 # Create 00-keyboard.conf file
 crtkeyboard () {
-mkdir -p ./ezreleng/airootfs/etc/X11/xorg.conf.d
+mkdir -p ./archreleng/airootfs/etc/X11/xorg.conf.d
 echo "Section \"InputClass\"
         Identifier \"system-keyboard\"
         MatchIsKeyboard \"on\"
         Option \"XkbLayout\" \""${KEYMP}"\"
         Option \"XkbModel\" \""${KEYMOD}"\"
-EndSection" > ./ezreleng/airootfs/etc/X11/xorg.conf.d/00-keyboard.conf
+EndSection" > ./archreleng/airootfs/etc/X11/xorg.conf.d/00-keyboard.conf
 }
 
 # Fix 40-locale-gen.hook and create locale.conf
 crtlocalec () {
-sed -i "s/en_US/"${LCLST}"/g" ./ezreleng/airootfs/etc/pacman.d/hooks/40-locale-gen.hook
-echo "LANG="${LCLST}".UTF-8" > ./ezreleng/airootfs/etc/locale.conf
+sed -i "s/en_US/"${LCLST}"/g" ./archreleng/airootfs/etc/pacman.d/hooks/40-locale-gen.hook
+echo "LANG="${LCLST}".UTF-8" > ./archreleng/airootfs/etc/locale.conf
 }
 
 # Start mkarchiso
 runmkarchiso () {
-mkarchiso -v -w ./work -o ./out ./ezreleng
+mkarchiso -v -w ./work -o ./out ./archreleng
 }
 
 # ----------------------------------------
@@ -202,9 +203,9 @@ rootuser
 handlerror
 prepreqs
 cleanup
-cpezreleng
+cparchreleng
 addnmlinks
-cpezrepo
+cparch
 nalogin
 rmunitsd
 cpmyfiles
@@ -217,21 +218,6 @@ setkeylayout
 crtkeyboard
 crtlocalec
 runmkarchiso
-rmezrepo
+rmarch
 
 
-# Disclaimer:
-#
-# THIS SOFTWARE IS PROVIDED BY EZNIX “AS IS” AND ANY EXPRESS OR IMPLIED
-# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
-# EVENT SHALL EZNIX BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-# END
-#
