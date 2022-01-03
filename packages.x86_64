@@ -90,6 +90,7 @@ usb_modeswitch
 usbmuxd
 usbutils
 vim
+vim-plug
 vpnc
 wireless-regdb
 wireless_tools
@@ -101,11 +102,11 @@ zsh
 
 #Audio Backend
 pavucontrol
-pipewire
-pipewire-alsa
-pipewire-jack
-pipewire-media-session
-pipewire-pulse
+pulseaudio
+pulseaudio-alsa
+pulseaudio-jack
+pulseaudio-bluetooth
+
 
 #Arch Linux GUI i3 core
 xorg-server
@@ -118,6 +119,7 @@ network-manager-applet
 lightdm
 xf86-input-libinput
 lightdm-gtk-greeter
+lua-pam-git
 
 #awesome-deps
 lua53
@@ -127,6 +129,8 @@ xcb-util-xrm
 imagemagick
 ldoc
 xmlto
+light
+
 
 #AwesomeWM
 awesome-git
@@ -136,7 +140,6 @@ neofetch
 dmenu
 picom-ibhagwan-git
 xfce4-power-manager
-volumeicon
 lxappearance
 feh
 firefox
@@ -148,6 +151,7 @@ linux-headers
 pcmanfm
 mtpfs
 gvfs-mtp
+blueman
 
 
 
@@ -168,7 +172,7 @@ siji
 xorg-fonts-misc
 nerd-fonts-fantasque-sans-mono
 networkmanager-dmenu-git
-
+npm
 
 #Calamares Dependencies
 appstream-qt

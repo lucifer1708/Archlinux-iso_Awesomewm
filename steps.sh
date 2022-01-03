@@ -1,9 +1,4 @@
 #!/bin/bash
-
-# Version: 4.9 -- by eznix (https://sourceforge.net/projects/ezarch/)
-# Revision: 2021.11.08
-# (GNU/General Public License version 3.0)
-
 # ----------------------------------------
 # Define Variables
 # ----------------------------------------
@@ -119,7 +114,6 @@ cp -r syslinux ./archreleng/
 cp -r usr ./archreleng/airootfs/
 cp -r etc ./archreleng/airootfs/
 cp -r opt ./archreleng/airootfs/
-ln -sf /usr/share/ezarcher ./archreleng/airootfs/etc/skel/ezarcher
 }
 
 # Set hostname
@@ -151,6 +145,7 @@ storage:x:870:"${MYUSERNM}"
 optical:x:880:"${MYUSERNM}"
 lp:x:840:"${MYUSERNM}"
 audio:x:890:"${MYUSERNM}"
+video:x:860:"${MYUSERNM}"
 "${MYUSERNM}":x:1010:" > ./archreleng/airootfs/etc/group
 }
 
