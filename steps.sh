@@ -140,12 +140,10 @@ scanner:x:96:"${MYUSERNM}"
 power:x:98:"${MYUSERNM}"
 rfkill:x:850:"${MYUSERNM}"
 users:x:985:"${MYUSERNM}"
-video:x:860:"${MYUSERNM}"
 storage:x:870:"${MYUSERNM}"
 optical:x:880:"${MYUSERNM}"
 lp:x:840:"${MYUSERNM}"
 audio:x:890:"${MYUSERNM}"
-video:x:860:"${MYUSERNM}"
 autologin:x:1001:"${MYUSERNM}"
 "${MYUSERNM}":x:1010:" > ./archreleng/airootfs/etc/group
 }

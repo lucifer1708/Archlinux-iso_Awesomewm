@@ -173,6 +173,7 @@ xorg-fonts-misc
 nerd-fonts-fantasque-sans-mono
 networkmanager-dmenu-git
 npm
+nitrogen
 
 #Calamares Dependencies
 appstream-qt

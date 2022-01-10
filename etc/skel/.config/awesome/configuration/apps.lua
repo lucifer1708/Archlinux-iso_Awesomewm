@@ -8,7 +8,7 @@ return {
 		-- Default terminal emulator
 		terminal = 'alacritty',
 		-- Default web browser
-		web_browser = 'firefox',
+		web_browser = 'brave',
 		-- Default text editor
 		text_editor = 'subl',
 		-- Default file manager
@@ -52,7 +52,8 @@ return {
 	-- List of apps to start once on start-up
 	run_on_start_up = {
 		--Optimus
-		'nm-applet',
+                'nitrogen --restore',
+                'nm-applet',
 		'optimus-manager-qt',
 		-- Compositor
 		'picom -b --experimental-backends --dbus --config ' ..
@@ -72,8 +73,7 @@ return {
 		[[
 		xidlehook --not-when-fullscreen --not-when-audio --timer 600 \
 		"awesome-client 'awesome.emit_signal(\"module::lockscreen_show\")'" ""
-		]]
-
+		]],
 		-- You can add more start-up applications here
 	},
 

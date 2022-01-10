@@ -1,87 +1,73 @@
-local ok, nvimtree = pcall(require, "nvim-tree")
+local present, nvimtree = pcall(require, "nvim-tree")
 
-if not ok then
-    return
+local conf = require("core.utils").load_config().plugins.options.nvimtree
+
+local git_status = conf.enable_git
+local ui = conf.ui
+
+if not present then
+   return
 end
 
-local signs = require("utils").signs
+local g = vim.g
 
-vim.g.nvim_tree_root_folder_modifier = ":t"
-vim.g.nvim_tree_quit_on_open = 1
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_side = "left"
-vim.g.nvim_tree_width = 30
-vim.g.nvim_tree_window_picker_exclude = {
-    filetype = {
-        "packer",
-        "qf",
-    },
-    buftype = {
-        "terminal",
-    },
+g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
+g.nvim_tree_git_hl = git_status
+g.nvim_tree_highlight_opened_files = 0
+g.nvim_tree_indent_markers = 1
+g.nvim_tree_quit_on_open = 0 -- closes tree when file's opened
+g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
+
+g.nvim_tree_window_picker_exclude = {
+   filetype = { "notify", "packer", "qf" },
+   buftype = { "terminal" },
 }
-vim.g.nvim_tree_special_files = {
-    ["README.md"] = 0,
-    ["Makefile"] = 0,
-    ["MAKEFILE"] = 0,
+
+g.nvim_tree_show_icons = {
+   folders = 1,
+   files = 1,
+   git = git_status,
 }
-vim.g.nvim_tree_show_icons = {
-    git = 0,
-    folders = 1,
-    files = 1,
-    folder_arrows = 0,
-}
-vim.g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-        unstaged = "✗",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "★",
-        deleted = "",
-        ignored = "◌",
-    },
-    folder = {
-        arrow_open = "",
-        arrow_closed = "",
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = "",
-    },
-    lsp = {
-        hint = signs.Hint,
-        info = signs.Info,
-        warning = signs.Warning,
-        error = signs.Error,
-    },
+
+g.nvim_tree_icons = {
+   default = "",
+   symlink = "",
+   git = {
+      deleted = "",
+      ignored = "◌",
+      renamed = "➜",
+      staged = "✓",
+      unmerged = "",
+      unstaged = "✗",
+      untracked = "★",
+   },
+   folder = {
+      default = "",
+      empty = "",
+      empty_open = "",
+      open = "",
+      symlink = "",
+      symlink_open = "",
+   },
 }
 
 nvimtree.setup {
-    update_to_buf_dir = {
-        enable = true,
-        auto_open = true,
-    },
-    update_focused_file = {
-        enable = true,
-        update_cwd = true,
-        ignore_list = {},
-    },
-    git = {
-        enable = false,
-    },
-    filters = {
-        dotfiles = false,
-        custom = {
-            ".git",
-        },
-    },
-    view = {
-        hide_root_folder = true,
-        auto_resize = true,
-    },
+   filters = {
+      dotfiles = false,
+   },
+   disable_netrw = true,
+   hijack_netrw = true,
+   ignore_ft_on_setup = { "dashboard" },
+   auto_close = false,
+   open_on_tab = false,
+   hijack_cursor = true,
+   update_cwd = true,
+   update_focused_file = {
+      enable = true,
+      update_cwd = false,
+   },
+   view = ui,
+   git = {
+      ignore = false,
+   },
 }

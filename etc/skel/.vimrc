@@ -11,7 +11,7 @@ filetype indent plugin on
 set encoding=UTF-8
 set mouse=a
 set nojoinspaces
-set incsearch 
+set incsearch
 set hlsearch
 set autowrite
 set autoread
@@ -52,6 +52,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jiangmiao/auto-pairs'
+Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 " Configs
