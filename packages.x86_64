@@ -202,3 +202,10 @@ boost
 grub
 calamares
 os-prober
+
+#nvidia
+nvidia
+nvidia-settings
+nvidia-utils
+nvidia-prime
+nvidia-dkms
