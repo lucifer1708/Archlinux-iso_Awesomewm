@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="archlinux-awesomewm"
+iso_name="archlinux-awesomewm_non-blur"
 iso_label="ARCH_AWESOMEWM_$(date +%Y%m)"
 iso_application="Arch Linux Live/Rescue CD"
 iso_version="$(date +%Y.%m)"

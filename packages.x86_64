@@ -111,7 +111,6 @@ pulseaudio-bluetooth
 #Arch Linux GUI i3 core
 xorg-server
 xorg-xrandr
-acpilight
 xdg-user-dirs
 bash-completion
 networkmanager
@@ -119,7 +118,6 @@ network-manager-applet
 lightdm
 xf86-input-libinput
 lightdm-gtk-greeter
-lua-pam-git
 
 #awesome-deps
 lua53
@@ -129,7 +127,6 @@ xcb-util-xrm
 imagemagick
 ldoc
 xmlto
-light
 
 
 #AwesomeWM
@@ -152,7 +149,6 @@ pcmanfm
 mtpfs
 gvfs-mtp
 blueman
-ffmpeg
 
 
 #icons & theme
@@ -171,9 +167,9 @@ ttf-unifont
 siji
 xorg-fonts-misc
 nerd-fonts-fantasque-sans-mono
-networkmanager-dmenu-git
 npm
-nitrogen
+paru
+base-devel
 
 #Calamares Dependencies
 appstream-qt
@@ -202,3 +198,11 @@ boost
 grub
 calamares
 os-prober
+
+#Nvidia
+nvidia
+nvidia-utils
+nvidia-settings
+nvidia-dkms
+nvidia-prime
+
