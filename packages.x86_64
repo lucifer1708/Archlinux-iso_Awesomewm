@@ -175,8 +175,7 @@ nerd-fonts-fantasque-sans-mono
 networkmanager-dmenu-git
 npm
 nitrogen
-paru
-base-devel
+
 #Calamares Dependencies
 appstream-qt
 boost-libs
