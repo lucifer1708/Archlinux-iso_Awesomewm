@@ -120,6 +120,7 @@ lightdm
 xf86-input-libinput
 lightdm-gtk-greeter
 lua-pam-git
+vimix-cursors
 
 #awesome-deps
 lua53
@@ -174,7 +175,8 @@ nerd-fonts-fantasque-sans-mono
 networkmanager-dmenu-git
 npm
 nitrogen
-
+paru
+base-devel
 #Calamares Dependencies
 appstream-qt
 boost-libs
