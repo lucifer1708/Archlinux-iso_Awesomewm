@@ -3,7 +3,7 @@
 eval "$(starship init bash)"
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
+EDITOR='nvim'
 alias ls='ls --color=auto'
 alias installer='sudo calamares'
 PS1='[\u@\h \W]\$'
@@ -212,13 +212,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-#Leftwm aliases
-alias lti="leftwm-theme install"
-alias ltu="leftwm-theme uninstall"
-alias lta="leftwm-theme apply"
-alias ltupd="leftwm-theme update"
-alias ltupg="leftwm-theme upgrade"
 
 #remove
 alias rmgitcache="rm -r ~/.cache/git"
