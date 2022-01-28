@@ -118,7 +118,7 @@ network-manager-applet
 lightdm
 xf86-input-libinput
 lightdm-gtk-greeter
-
+volumeicon
 #awesome-deps
 lua53
 lua53-lgi
@@ -149,7 +149,7 @@ pcmanfm
 mtpfs
 gvfs-mtp
 blueman
-
+arcolinux-logout-git
 
 #icons & theme
 tela-circle-icon
@@ -160,7 +160,7 @@ xorg-bdftopcf
 xorg-font-util
 
 #lockscreen
-betterlockscreen
+betterlockscreen-git
 
 #polybar & deps
 ttf-unifont
@@ -170,6 +170,7 @@ nerd-fonts-fantasque-sans-mono
 npm
 paru
 base-devel
+nitrogen
 
 #Calamares Dependencies
 appstream-qt
