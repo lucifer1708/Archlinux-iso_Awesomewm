@@ -573,7 +573,7 @@ colors:
 
   # Cursor colors
   cursor:
-    text: '#FF261E'
+    text: '#000000'
     cursor: '#FF261E'
 
   # Normal colors
@@ -623,10 +623,10 @@ colors:
 #
 # Specifying a `duration` of `0` will disable the visual bell.
 # visual_bell:
-#   animation: EaseOutExpo
+#   animation: Ease 
 #   duration: 0.5
 #   color: '#ffffff'
-# Background opacity
+
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
@@ -639,8 +639,14 @@ window:
 #save_to_clipboard: false
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
+# cursor:
+#   style: underline 
+
 cursor:
-  style: underline 
+  style:
+    shape: Block
+  vi_mode_style:
+    shape: Block
 # If this is `true`, the cursor will be rendered as a hollow box when the
 # window is not focused.
 #unfocused_hollow: true

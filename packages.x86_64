@@ -89,8 +89,6 @@ udftools
 usb_modeswitch
 usbmuxd
 usbutils
-vim
-vim-plug
 vpnc
 wireless-regdb
 wireless_tools
@@ -108,7 +106,7 @@ pulseaudio-jack
 pulseaudio-bluetooth
 
 
-#Arch Linux GUI i3 core
+#Arch Linux GUI  core
 xorg-server
 xorg-xrandr
 xdg-user-dirs
@@ -119,6 +117,7 @@ lightdm
 xf86-input-libinput
 lightdm-gtk-greeter
 volumeicon
+
 #awesome-deps
 lua53
 lua53-lgi
@@ -139,8 +138,8 @@ picom-ibhagwan-git
 xfce4-power-manager
 lxappearance
 feh
-firefox
 polkit
+brave
 acpid
 acpi_call-dkms
 acpi
@@ -149,6 +148,8 @@ pcmanfm
 mtpfs
 gvfs-mtp
 blueman
+neovim
+ripgrep
 arcolinux-logout-git
 
 #icons & theme
@@ -162,15 +163,17 @@ xorg-font-util
 #lockscreen
 betterlockscreen-git
 
-#polybar & deps
+#deps
 ttf-unifont
 siji
 xorg-fonts-misc
 nerd-fonts-fantasque-sans-mono
 npm
+yarn
+nodejs-lts-gallium
 paru
 base-devel
-nitrogen
+vimix-cursors
 
 #Calamares Dependencies
 appstream-qt
@@ -206,4 +209,5 @@ nvidia-utils
 nvidia-settings
 nvidia-dkms
 nvidia-prime
+opencl-nvidia
 
